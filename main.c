@@ -9,8 +9,10 @@
  */
 int main(void)
 {
-    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-    size_t n = sizeof(array) / sizeof(array[0]);
+    int array[] = {73, 49, 68, 59, 86, 57, 27, 5, 60, 78, 84, 64, 70, 91, 4};
+
+    size_t n ;
+    n = sizeof(array) / sizeof(array[0]);
 
     print_array(array, n);
     printf("\n");

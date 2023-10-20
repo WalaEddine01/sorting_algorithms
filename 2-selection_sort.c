@@ -8,9 +8,11 @@
  */
 void selection_sort(int *array, size_t size)
 {
-	size_t i = 0, j = 0, k = 0;
-	int tmp, ind, a;
+	size_t i = 0, j = 0, k = 0, ind;
+	int tmp, a;
 
+	if (size == 0)
+		return;
 	for (i = 0; i < size - 1; i++)
 	{
 		tmp = array[i];

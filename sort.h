@@ -28,5 +28,10 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void merge(int *larray, int *rarray, int *array);
+void _memcpy(int *dest, int *src, int n);
+void print_sides(int *array, int size, int mid);
+void print_Done(int *array, int size);
 
 #endif /*SORT_H*/

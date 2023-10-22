@@ -1,10 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sort.h"
 
 /**
- * main - Entry point
- *
+ * main - Entry point function for test our function.
  * Return: Always 0
  */
 int main(void)
@@ -19,3 +16,4 @@ int main(void)
     print_array(array, n);
     return (0);
 }
+

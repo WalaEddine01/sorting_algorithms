@@ -6,7 +6,6 @@
 #include <string.h>
 
 
-/*--Structs--*/
 /**
  * struct listint_s - Doubly linked list node
  *
@@ -21,7 +20,7 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-/*--Function's ProtoTypes--*/
+/* Function's ProtoTypes Declaration */
 void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
 void bubble_sort(int *array, size_t size);
@@ -34,4 +33,4 @@ void _memcpy(int *dest, int *src, int n);
 void print_sides(int *array, int size, int mid);
 void print_Done(int *array, int size);
 
-#endif /*SORT_H*/
+#endif

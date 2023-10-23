@@ -1,52 +1,67 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - Sorts a doubly linked list of integers in ascending order
+ * add_node - Inserts a node in the sorted portion of the list
  * @list: Pointer to the head of the list
+ * @node: Node to insert
+ * Return: Nothing.
+ */
+void add_node(listint_t **list, listint_t *node)
+{
+	listint_t *current = *list;
+
+	if (*list == NULL)
+	{
+		*list = node;
+		return;
+	}
+	if (node->n < (*list)->n)
+	{
+		node->next = *list;
+		node->prev = NULL;
+		(*list)->prev = node;
+		*list = node;
+		return;
+	}
+	while (current->next != NULL && current->next->n <= node->n)
+	{
+		current = current->next;
+	}
+	node->next = current->next;
+	if (current->next != NULL)
+	{
+		current->next->prev = node;
+
+	}
+	node->prev = current;
+	current->next = node;
+}
+
+/**
+ * insertion_sort_list - a function that sorts a doubly linked
+ * list of integers in ascending order.
+ * @list: a pointer to the head of the list.
+ * Return: Nothing.
  */
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *sorted = NULL;
-    listint_t *current = *list;
+	listint_t *sorted = NULL, *unsorted = *list, *next;
 
-    if (list == NULL || *list == NULL || (*list)->next == NULL)
-	return;
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
+		return;
 
-    while (current != NULL) {
-        listint_t *next = current->next;
+	while (unsorted != NULL)
+	{
+		next = unsorted->next;
 
-        if (sorted == NULL || sorted->n >= current->n) {
-            current->next = sorted;
-            current->prev = NULL;
-            if (sorted != NULL)
-                sorted->prev = current;
-            sorted = current;
-        } else {
-            listint_t *temp = sorted;
+		unsorted->prev = NULL;
+		unsorted->next = NULL;
 
-            while (temp != NULL && temp->n < current->n) {
-                temp = temp->next;
-            }
-            if (temp == sorted) {
-                current->prev = sorted;
-                current->next = sorted->next;
-                if (sorted->next != NULL)
-                    sorted->next->prev = current;
-                sorted->next = current;
-            } else {
-                current->next = temp;
-                current->prev = temp->prev;
-                if (temp->prev != NULL)
-                    temp->prev->next = current;
-                temp->prev = current;
-            }
-        }
+		add_node(&sorted, unsorted);
 
-        if (next != NULL)
-            next->prev = current;
-        current = next;
-    }
+		unsorted = next;
+	}
 
-    *list = sorted;
+	*list = sorted;
 }
 

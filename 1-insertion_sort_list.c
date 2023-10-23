@@ -59,6 +59,8 @@ void insertion_sort_list(listint_t **list)
 
 		add_node(&sorted, unsorted);
 
+		print_list(sorted);
+
 		unsorted = next;
 	}
 

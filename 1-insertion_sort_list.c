@@ -1,42 +1,4 @@
 #include "sort.h"
-
-/**
- * add_node - Inserts a node in the sorted portion of the list
- * @list: Pointer to the head of the list
- * @node: Node to insert
- * Return: Nothing.
- */
-void add_node(listint_t **list, listint_t *node)
-{
-	listint_t *current = *list;
-
-	if (*list == NULL)
-	{
-		*list = node;
-		return;
-	}
-	if (node->n < (*list)->n)
-	{
-		node->next = *list;
-		node->prev = NULL;
-		(*list)->prev = node;
-		*list = node;
-		return;
-	}
-	while (current->next != NULL && current->next->n <= node->n)
-	{
-		current = current->next;
-	}
-	node->next = current->next;
-	if (current->next != NULL)
-	{
-		current->next->prev = node;
-
-	}
-	node->prev = current;
-	current->next = node;
-}
-
 /**
  * insertion_sort_list - a function that sorts a doubly linked
  * list of integers in ascending order.
@@ -45,25 +7,30 @@ void add_node(listint_t **list, listint_t *node)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *sorted = NULL, *unsorted = *list, *next;
+	listint_t *current = NULL;
+	listint_t *tmp = NULL;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
+	if (!list || !(*list) || !(*list)->next)
 		return;
 
-	while (unsorted != NULL)
+	current = (*list)->next;
+	while (current)
 	{
-		next = unsorted->next;
-
-		unsorted->prev = NULL;
-		unsorted->next = NULL;
-
-		add_node(&sorted, unsorted);
-
-		print_list(sorted);
-
-		unsorted = next;
+		tmp = current->next;
+		while (current->prev && current->n < current->prev->n)
+		{
+			current->prev->next = current->next;
+			if (current->next)
+				current->next->prev = current->prev;
+			current->next = current->prev;
+			current->prev = current->prev->prev;
+			current->next->prev = current;
+			if (!current->prev)
+				*list = current;
+			else
+				current->prev->next = current;
+			print_list(*list);
+		}
+		current = tmp;
 	}
-
-	*list = sorted;
 }
-

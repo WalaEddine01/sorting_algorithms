@@ -1,7 +1,11 @@
 #include "sort.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "sort.h"
 
 /**
- * main - Entry point function for test our function.
+ * main - Entry point
+ *
  * Return: Always 0
  */
 int main(void)
@@ -11,9 +15,8 @@ int main(void)
 
     print_array(array, n);
     printf("\n");
-    merge_sort(array, n);
+    quick_sort(array, n);
     printf("\n");
     print_array(array, n);
     return (0);
 }
-

@@ -1,96 +1,75 @@
 #include "sort.h"
-<<<<<<< HEAD
 
-void swap(int *a, int *b) {
-    int temp = *a;
-
-    *a = *b;
-    *b = temp;
-}
-
-int lomuto_partition(int *array, int low, int high) {
-    int pivot = array[high];
-    int i = low - 1, j;
-
-    for (j = low; j <= high - 1; j++) {
-        if (array[j] <= pivot) {
-            i++;
-            swap(&array[i], &array[j]);
-        }
-    }
-    swap(&array[i + 1], &array[high]);
-    return (i + 1);
-}
-
-void quick_sort_recursive(int *array, size_t size, int low, int high)
+/**
+ * swap - a function for swap the element of the array
+ * @a: element 1
+ * @b: element 2
+ * Return: nothing.
+ */
+void swap(int *a, int *b)
 {
-	int partition_index;
+	int temp = *a;
 
-	if (low < high)
+	*a = *b;
+	*b = temp;
+}
+
+/**
+ * l_part - a function that check and devide the array
+ * @array: an array
+ * @low: low value
+ * @top: hight value
+ * Return: new posiotn
+ */
+int l_part(int *array, int low, int top)
+{
+	int pivot = array[top];
+	int i = low - 1, j;
+
+	for (j = low; j <= top - 1; j++)
 	{
-        	partition_index = lomuto_partition(array, low, high);
+		if (array[j] <= pivot)
+		{
+			i++;
+			swap(&array[i], &array[j]);
+		}
+	}
+	swap(&array[i + 1], &array[top]);
+	return (i + 1);
+}
+
+/**
+ * quick_sort_recurs - a function for the recursive part
+ * @array: the array
+ * @size: the size of the array
+ * @low: the low elemnt
+ * @top: the hight element
+ * Return: Nothing.
+ */
+void quick_sort_recurs(int *array, size_t size, int low, int top)
+{
+	if (low < top)
+	{
+		int partition_index = l_part(array, low, top);
+
 		print_array(array, size);
-		quick_sort_recursive(array, size, low, partition_index - 1);
-		quick_sort_recursive(array, size, partition_index + 1, high);
+
+		quick_sort_recurs(array, size, low, partition_index - 1);
+		quick_sort_recurs(array, size, partition_index + 1, top);
 	}
 }
 
+/**
+ * quick_sort - a quiq sort function
+ * @array: an array
+ * @size: the size of an array
+ */
 void quick_sort(int *array, size_t size)
 {
 	if (size <= 1)
 	{
 		return;
 	}
-	quick_sort_recursive(array, size, 0, size - 1);
+	quick_sort_recurs(array, size, 0, size - 1);
 }
 
-=======
-/**
- * quick_sort - sorts an array of integers in ascending order using
- * the quick sort algorithm
- * @array: the array that we have to sort
- * @size: the size of the array
- * Return: void
- */
-void quick_sort(int *array, size_t size)
-{
-	quick_sort_recursive(array, 0, size - 1, size);
-}
-/**
- * quick_sort_recursive - helper function of quick_sort function
- * @array: the array that we have to sort
- * @left: The leftmost index of the array
- * @right: The rightmost index of the array
- * @size: the size of the array
- * Return: void
- */
-void quick_sort_recursive(int *array, int left, int right, int size)
-{
-	int i, j, tmp;
-	int pivot;
-
-	if (left >= right)
-		return;
-	pivot = array[right];
-	i = left - 1;
-	for (j = left; j <= right - 1; j++)
-	{
-		if (array[j] < pivot)
-		{
-			i++;
-			tmp = array[i];
-			array[i] = array[j];
-			array[j] = tmp;
-		}
-	}
-
-	tmp = array[i + 1];
-	array[i + 1] = array[right];
-	array[right] = tmp;
-
-	print_array(array, size);
-
-	quick_sort_recursive(array, left, i, size);
-	quick_sort_recursive(array, i + 2, right, size);
-}
->>>>>>> 22a5c1a65540a3721eb534a3e0f6c75cea08703c

@@ -33,6 +33,5 @@ void _memcpy(int *dest, int *src, int n);
 void print_sides(int *array, int size, int mid);
 void print_Done(int *array, int size);
 void quick_sort(int *array, size_t size);
-void quick_sort_recursive(int *array, int left, int right, int size);
 
 #endif

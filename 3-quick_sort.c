@@ -21,7 +21,7 @@ void quick_sort(int *array, size_t size)
 void quick_sort_recursive(int *array, int left, int right, int size)
 {
 	int i, j, tmp;
-	int pivot;
+	int pivot, a = 0;
 
 	if (left >= right)
 		return;
@@ -35,15 +35,18 @@ void quick_sort_recursive(int *array, int left, int right, int size)
 			tmp = array[i];
 			array[i] = array[j];
 			array[j] = tmp;
-			if (j == 4 && i == 1)
-				print_array(array, size);
+			a = 1;
 		}
 	}
-	tmp = array[i + 1];
-	array[i + 1] = array[right];
-	array[right] = tmp;
 
-	print_array(array, size);
+	if (a == 1)
+	{
+		tmp = array[i + 1];
+		array[i + 1] = array[right];
+		array[right] = tmp;
+		a = 0;
+		print_array(array, size);
+	}
 
 	quick_sort_recursive(array, left, i, size);
 	quick_sort_recursive(array, i + 2, right, size);

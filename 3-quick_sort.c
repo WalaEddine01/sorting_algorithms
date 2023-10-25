@@ -55,10 +55,9 @@ void quick_sort_recurs(int *array, size_t size, int low, int top)
 
 		quick_sort_recurs(array, size, low, partition_index - 1);
 		quick_sort_recurs(array, size, partition_index + 1, top);
-
-		print_array(array, size);
-
 	}
+	print_array(array, size);
+
 }
 
 /**

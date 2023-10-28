@@ -33,5 +33,7 @@ void _memcpy(int *dest, int *src, int n);
 void print_sides(int *array, int size, int mid);
 void print_Done(int *array, int size);
 void quick_sort(int *array, size_t size);
+void shell_sort(int *array, size_t size);
 
 #endif
+

@@ -9,21 +9,22 @@
  */
 void shell_sort(int *array, size_t size)
 {
-	int gap, i, j, temp;
+	size_t gap, i, j;
+	int temp;
 
 	for (gap = size/2; gap > 0; gap /= 2)
 	{
 		for(i = gap; i < size; i += 1)
 		{
-			int temp = arr[i];
+			temp = array[i];
 			
-			for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+			for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
 			{
-				arr[j] = arr[j - gap];	
+				array[j] = array[j - gap];	
 			}
-			arr[j] = temp;
+			array[j] = temp;
 		}
+		print_array(array, size);
 	}
-	return (0);
 }
 

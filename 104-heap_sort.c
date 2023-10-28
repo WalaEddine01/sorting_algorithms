@@ -15,7 +15,7 @@ void swap(int *a, int *b)
 }
 
 /**
- * siftDown - a function that performs the
+ * sift_down - a function that performs the
  * sift-down operation in the heap sort algorithm.
  * @array: array to sort
  * @start: start index for sift-down

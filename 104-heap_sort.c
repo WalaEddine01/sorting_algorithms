@@ -23,34 +23,34 @@ void swap(int *a, int *b)
  * @size: the size of the array
  * Return: Nothing.
  */
-void siftDown(int *array, size_t start, size_t end, size_t size)
+void sift_down(int *array, size_t start, size_t end, size_t size)
 {
-	size_t root = start;
+	size_t rt = start;
 
-	while (root * 2 + 1 <= end)
+	while (rt * 2 + 1 <= end)
 	{
-		size_t child = root * 2 + 1;
-		size_t swapIdx = root;
+		size_t child = rt * 2 + 1;
+		size_t swap_idx = rt;
 
-		if (array[swapIdx] < array[child])
+		if (array[swap_idx] < array[child])
 		{
-			swapIdx = child;
+			swap_idx = child;
 		}
 
-		if (child + 1 <= end && array[swapIdx] < array[child + 1])
+		if (child + 1 <= end && array[swap_idx] < array[child + 1])
 		{
-			swapIdx = child + 1;
+			swap_idx = child + 1;
 		}
 
-		if (swapIdx == root)
+		if (swap_idx == rt)
 		{
 			return;
 		}
 		else
 		{
-			swap(&array[root], &array[swapIdx]);
+			swap(&array[rt], &array[swap_idx]);
 			print_array(array, size);
-			root = swapIdx;
+			rt = swap_idx;
 		}
 	}
 }
@@ -65,23 +65,23 @@ void siftDown(int *array, size_t start, size_t end, size_t size)
  */
 void heap_sort(int *array, size_t size)
 {
-	int start, end;
+	int i, j;
 
 	if (size == 0)
 	{
 		return;
 	}
 
-	for (start = (size - 2) / 2; start >= 0; start--)
+	for (i = (size - 2) / 2; i >= 0; i--)
 	{
-		siftDown(array, start, size - 1, size);
+		sift_down(array, i, size - 1, size);
 	}
 
-	for (end = size - 1; end > 0; end--)
+	for (j = size - 1; j > 0; j--)
 	{
-		swap(&array[end], &array[0]);
+		swap(&array[j], &array[0]);
 		print_array(array, size);
-		siftDown(array, 0, end - 1, size);
+		sift_down(array, 0, j - 1, size);
 	}
 }
 

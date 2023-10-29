@@ -1,19 +1,20 @@
 #include "sort.h"
 
 void bitonic_sort(int *array, size_t size) {
+    size_t i, j, k;
+    size_t start, mid, end;
+
     if (array == NULL || size < 2) {
         return;
     }
 
-    size_t i, j;
     for (i = 2; i <= size; i *= 2) {
         for (j = 0; j < size; j += i) {
-            size_t start = j;
-            size_t mid = j + i / 2;
-            size_t end = j + i;
-            size_t k;
+            start = j;
+            mid = j + i / 2;
+            end = j + i;
 
-            printf("Merging [%zu/%zu] (UP):\n", i, size);
+            printf("Merging [%lu/%lu] (UP):\n", (unsigned long)i, (unsigned long)size);
 
             for (k = start; k < end / 2; k++) {
                 printf("%d, ", array[k]);

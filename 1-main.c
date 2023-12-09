@@ -32,7 +32,22 @@ listint_t *create_listint(const int *array, size_t size)
     }
     return (list);
 }
-
+void insertion_sort_list(listint_t **list)
+{
+    if (!*list || !(*list)->next)
+        return;
+    listint_t *tmp;
+    while (list)
+    {
+        while (!tmp->prev && )
+        {
+            /* code */
+        }
+        
+        (*list) = (*list)->next;
+    }
+    
+}
 /**
  * main - Entry point
  *
